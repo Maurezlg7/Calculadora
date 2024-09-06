@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    <div class="conteiner_calculator">
+        <input class="operacion" id="operacion" />
+        <div class="option_btn">
+            <button class="btn btn-light" onclick="CE()">CE</button>
+            <button class="btn btn-danger" onclick="DEL()">DEL</button>
+        </div>
+        <div class="numeros">
+            <button class="btn btn-info" onclick="agregar('1')">1</button>
+            <button class="btn btn-info" onclick="agregar('2')">2</button>
+            <button class="btn btn-info" onclick="agregar('3')">3</button>
+            <button class="btn btn-info" onclick="agregar('/')">÷</button>
+            <button class="btn btn-info" onclick="agregar('4')">4</button>
+            <button class="btn btn-info" onclick="agregar('5')">5</button>
+            <button class="btn btn-info" onclick="agregar('6')">6</button>
+            <button class="btn btn-info" onclick="agregar('*')">x</button>
+            <button class="btn btn-info" onclick="agregar('7')">7</button>
+            <button class="btn btn-info" onclick="agregar('8')">8</button>
+            <button class="btn btn-info" onclick="agregar('9')">9</button>
+            <button class="btn btn-info" onclick="agregar('-')">-</button>
+            <button class="btn btn-info" onclick="agregar('0')">0</button>
+            <button class="btn btn-info" onclick="agregar('.')">.</button>
+            <button class="btn btn-info" onclick="mostrar()">=</button>
+            <button class="btn btn-info" onclick="agregar('+')">+</button>
+        </div>
+    </div>
+    <style>
+        body{
+            background-color: rgb(45, 45, 45);
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .conteiner_calculator{
+            width: 500px;
+            height: 650px;
+            background-color: gray;
+            border-radius: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid black;
+            box-shadow: 0px 0px 10px 5px black;
+        }
+        .operacion{
+            background-color: olivedrab;
+            width: 400px;
+            height: 70px;
+            border-radius: 7px;
+            border: 2px solid black;
+            text-align: right;
+            color: white;
+            font-size: 35px;
+            font-weight: bolder;
+            padding-right: 5px;
+            margin-bottom: 5px;
+        }
+        .option_btn{
+            width: 400px;
+            height: 70px;
+            display: flex;
+            flex-direction: row;
+            justify-content: right;
+            align-items: center;
+        }
+        .option_btn .btn{
+            margin: 0 5px;
+            width: 1fr;
+            height: 1fr;
+        }
+        .numeros{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+            width: 400px;
+            height: 400px;
+        }
+        .btn{
+            font-size: 30px;
+            font-weight: bolder;
+            border: 1px solid black;
+        }
+    </style>
+    <script>
+        let operacion = document.getElementById('operacion');
+        let resultado = 0;
+        
+        function agregar(valor){
+            operacion.value += valor;
+        }
+
+        function mostrar(){
+            try {
+                resultado = Function('"use strict";return (' + operacion.value + ')')();
+                operacion.value = resultado;
+            } catch (e) {
+                operacion.value = 'Error';
+            }
+        }
+        function CE(){
+            operacion.value = '';
+        }
+
+        function DEL(){
+            operacion.value = operacion.value.slice(0, -1);
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
